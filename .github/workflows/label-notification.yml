@@ -24,8 +24,9 @@ jobs:
           #   throw new Error('이슈 또는 라벨 정보를 찾을 수 없습니다.');
           # }
 
-          const issueTitle = ${{ github.event.issue.title }}
-          const issueUrl = ${{ github.event.issue.html_url }}
+          # const issueTitle = ${{ github.event.issue.title }}
+          # const issueUrl = ${{ github.event.issue.html_url }}
+          
           # const issueTitle = issue.title;
           # const issueUrl = issue.html_url;
           # const labelName = label.name;
