@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Debug Event
+      run: echo "Event Title ${{ github.event.issue.title }}"
+
     - name: Send Notification to Another Repo
       uses: actions/github-script@v6.4.1  # 최신 버전 사용
       with:
