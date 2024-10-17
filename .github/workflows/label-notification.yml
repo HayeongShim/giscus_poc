@@ -1,0 +1,26 @@
+name: Issue Label Notification
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Send Notification to Another Repo
+      if: github.event.label.name == 'bug'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const issueTitle = github.context.payload.issue.title;
+          const issueUrl = github.context.payload.issue.html_url;
+
+          // 다른 저장소에 새로운 이슈 생성
+          await github.issues.create({
+            owner: 'HayeongShim',  // 여기에는 타겟 저장소의 소유자를 입력하세요 (개인 계정명 또는 조직명)
+            repo: 'TIL',     // 타겟 저장소 이름을 입력하세요
+            title: `이슈 라벨 알림: ${issueTitle}`,
+            body: `이슈에 특정 라벨이 추가되었습니다. 원본 이슈 링크: ${issueUrl}`
+          });
