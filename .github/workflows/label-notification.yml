@@ -34,6 +34,8 @@ jobs:
           await github.issues.create({
             owner: 'HayeongShim',  // 타겟 저장소의 소유자
             repo: 'TIL',     // 타겟 저장소 이름
-            title: `이슈 라벨 알림: ${issueTitle}`,
-            body: `라벨 "labelName이 추가되었습니다.\n원본 이슈 링크: ${issueUrl}`
+            # title: `이슈 라벨 알림: ${issueTitle}`,
+            # body: `라벨 "labelName이 추가되었습니다.\n원본 이슈 링크: ${issueUrl}`
+            title: 'TEST',
+            body: 'TEST BODY'
           });
