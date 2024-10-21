@@ -5,14 +5,20 @@ on:
     types: [opened]
 
 jobs:
-  notify:
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: create an issue
-        uses: dacbd/create-issue-action@main
-        with:
-          token: ${{ github.token }}
-          title: Simple test issue
-          body: my new issue
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: call the other repo
+      env:
+        GITHUB_TOKEN: ${{ secrets.MY_PERSONAL_ACCESS_TOKEN }}
+        EVENT: 'POST'
+        ORG: 'HayeongShim'
+        REPO: 'TIL'
+      run: |
+        curl -d "{\"event_type\": \"${EVENT}\"}" -H "Content-Type: application/json" -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.everest-preview+json" "https://api.github.com/repos/${ORG}/${REPO}/dispatches"
